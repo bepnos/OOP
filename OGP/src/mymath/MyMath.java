@@ -1,5 +1,6 @@
 package mymath;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class MyMath {
@@ -81,7 +82,21 @@ public class MyMath {
 	 *      |     (xs[i] == v ? 1 : 0)
 	 *      | )
 	 */
-	static void insert(int[] xs, int n, int v) {
+	static int[] insert(int[] xs, int n, int v) {
+		int index = binarySearch(xs, v);
+		int newarr[] = new int[n + 1];
+		int i; 
+		for (i = 0; i < n + 1; i++) {
+			if (i < index)
+				newarr[i] = xs[i];
+			else if (i == index)
+				newarr[i] = v;
+			else
+				newarr[i] = xs[i - 1];
+		}
+		return newarr;
+		
+		
 		// TODO: Implementeer en schrijf een testsuite!
 	}
 	
