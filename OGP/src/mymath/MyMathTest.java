@@ -1,5 +1,6 @@
 package mymath;
 
+// Ik snap het niet
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
