@@ -82,7 +82,7 @@ public class MyMath {
 	 *      |     (xs[i] == v ? 1 : 0)
 	 *      | )
 	 */
-	static int[] insert(int[] xs, int n, int v) {
+	static void insert(int[] xs, int n, int v) {
 		int index = binarySearch(xs, v);
 		int newarr[] = new int[n + 1];
 		int i; 
@@ -94,7 +94,7 @@ public class MyMath {
 			else
 				newarr[i] = xs[i - 1];
 		}
-		return newarr;
+		xs = newarr;
 		
 		
 		// TODO: Implementeer en schrijf een testsuite!
