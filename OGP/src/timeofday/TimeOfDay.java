@@ -11,15 +11,14 @@ class TimeOfDay {
 	/**
 	 * 
 	 */
-	private int hours;	
-	private int minutes;
+	private int minutesSinceMidnight;
 
 	int getMinutes() {
-		return minutes;
+		return minutesSinceMidnight % 60; 
 	}
 	
 	int getHours() {
-		return hours;
+		return minutesSinceMidnight / 60;
 	}
 	/**
 	 * Initialises this instance with the given hours and minutes
@@ -31,8 +30,7 @@ class TimeOfDay {
 	 * 
 	 */
 	TimeOfDay(int hours, int minutes){
-		this.hours = hours;
-		this.minutes = minutes;
+		this.minutesSinceMidnight = hours*60 + minutes;
 	}
 	
 
@@ -47,7 +45,8 @@ class TimeOfDay {
 	 */
 	
 	public void setMinutes(int minutes) {
-		this.minutes = minutes;
+		int hours = this.minutesSinceMidnight / 60; 
+		this.minutesSinceMidnight = hours * 60 + minutes; 
 	}
 
 	/**
@@ -60,7 +59,8 @@ class TimeOfDay {
 	 *
 	 */
 	public void setHours(int hours) {
-		this.hours = hours;
+		int minutes = this.minutesSinceMidnight % 60; 
+		this.minutesSinceMidnight = hours * 60 + minutes; 
 	} 
 	
 	

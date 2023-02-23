@@ -6,9 +6,10 @@ import java.util.stream.Stream;
 public class test {
 	
 	public static void main(String[] args) {
-	int[] xs = {10, 20, 30, 40};
-	int[] result = MyMath.insert(xs, 4, 15);
-	System.out.println(Arrays.toString(result));
-	
+	int getal = 60;
+	int result1 = getal % 60;
+	int result2 = getal / 60;
+	System.out.println(result1);
+	System.out.println(result2);
 	}
 }
