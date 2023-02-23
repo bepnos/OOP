@@ -66,6 +66,7 @@ public class MyMath {
 	/**
 	 * Inserts the given value `v` into the sorted sequence of values at indices 0 (inclusive)
 	 * through `n` (exclusive) in array `xs`, shifting elements to the right as necessary.
+	 * @return 
 	 * 
 	 * @pre | xs != null
 	 * @pre | 0 <= n
@@ -82,19 +83,24 @@ public class MyMath {
 	 *      |     (xs[i] == v ? 1 : 0)
 	 *      | )
 	 */
-	static void insert(int[] xs, int n, int v) {
-		int index = binarySearch(xs, v);
-		int newarr[] = new int[n + 1];
+	static int[] insert(int[] xs, int n, int v) {
+		int[] sequence = new int[n];
 		int i; 
-		for (i = 0; i < n + 1; i++) {
-			if (i < index)
-				newarr[i] = xs[i];
-			else if (i == index)
-				newarr[i] = v;
-			else
-				newarr[i] = xs[i - 1];
+		boolean inserted = false;
+		for (i = 0; i<sequence.length; i++ ) {
+			if (xs[i] < v) {
+				sequence[i] = xs[i];
+			}
+			else if (xs[i] >= v && inserted == false) {
+				sequence[i] = v; 
+				inserted = true;
+			}
+			else {
+				sequence[i] = xs[i - 1];
+			}
 		}
-		xs = newarr;
+		xs = sequence;
+		return xs; 	
 		
 		
 		// TODO: Implementeer en schrijf een testsuite!

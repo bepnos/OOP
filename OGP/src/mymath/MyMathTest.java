@@ -33,7 +33,8 @@ class MyMathTest {
 	@Test
 	void insertionTest() {
 		int xs[] = {10, 20, 30, 40};
-
+		int expected[] = {10, 15, 20};
+		assertArrayEquals(expected, MyMath.insert(xs, 3, 15));
 		
 		
 	}
