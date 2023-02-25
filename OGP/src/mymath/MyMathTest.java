@@ -33,11 +33,16 @@ class MyMathTest {
 	@Test
 	void insertionTest() {
 		int xs[] = {10, 20, 30, 40};
+<<<<<<< HEAD
 		int result[] = MyMath.insert(xs, 1, 60);
 		System.out.println(Arrays.toString(result));
 		
 		
 		assertArrayEquals(new int[] {10, 60, 20, 30, 40}, result);
+=======
+		int expected[] = {10, 15, 20};
+		assertArrayEquals(expected, MyMath.insert(xs, 3, 15));
+>>>>>>> branch 'master' of https://github.com/bepnos/OGP
 		
 		
 	}

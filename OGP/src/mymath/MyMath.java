@@ -66,6 +66,7 @@ public class MyMath {
 	/**
 	 * Inserts the given value `v` into the sorted sequence of values at indices 0 (inclusive)
 	 * through `n` (exclusive) in array `xs`, shifting elements to the right as necessary.
+	 * @return 
 	 * 
 	 * @pre | xs != null
 	 * @pre | 0 <= n
@@ -83,9 +84,14 @@ public class MyMath {
 	 *      | )
 	 */
 	static int[] insert(int[] xs, int n, int v) {
+<<<<<<< HEAD
 		int newarr[] = new int[n + 2];
+=======
+		int[] sequence = new int[n];
+>>>>>>> branch 'master' of https://github.com/bepnos/OGP
 		int i; 
 		boolean inserted = false;
+<<<<<<< HEAD
 		for (i = 0; i <= n; i++) {
 			if (xs[i] < v) {
 				newarr[i] = xs[i];
@@ -96,7 +102,21 @@ public class MyMath {
 			}
 			else
 				newarr[i] = xs[i-1];
+=======
+		for (i = 0; i<sequence.length; i++ ) {
+			if (xs[i] < v) {
+				sequence[i] = xs[i];
+			}
+			else if (xs[i] >= v && inserted == false) {
+				sequence[i] = v; 
+				inserted = true;
+			}
+			else {
+				sequence[i] = xs[i - 1];
+			}
+>>>>>>> branch 'master' of https://github.com/bepnos/OGP
 		}
+<<<<<<< HEAD
 		if (inserted) {
 			newarr[n+1] = xs[n];
 			return newarr;
@@ -104,6 +124,10 @@ public class MyMath {
 	 
 		newarr[n+1] = v;
 		return newarr;
+=======
+		xs = sequence;
+		return xs; 	
+>>>>>>> branch 'master' of https://github.com/bepnos/OGP
 		
 		
 		// TODO: Implementeer en schrijf een testsuite!
