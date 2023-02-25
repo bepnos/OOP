@@ -33,11 +33,11 @@ class MyMathTest {
 	@Test
 	void insertionTest() {
 		int xs[] = {10, 20, 30, 40};
-		int result[] = MyMath.insert(xs, 3, 60);
+		int result[] = MyMath.insert(xs, 1, 60);
 		System.out.println(Arrays.toString(result));
 		
 		
-		assertArrayEquals(new int[] {10, 20, 30, 60, 40}, result);
+		assertArrayEquals(new int[] {10, 60, 20, 30, 40}, result);
 		
 		
 	}

@@ -83,17 +83,26 @@ public class MyMath {
 	 *      | )
 	 */
 	static int[] insert(int[] xs, int n, int v) {
-		int index = binarySearch(xs, v);
-		int newarr[] = new int[n + 1];
+		int newarr[] = new int[n + 2];
 		int i; 
-		for (i = 0; i < n + 1; i++) {
-			if (i < index)
+		boolean inserted = false;
+		for (i = 0; i <= n; i++) {
+			if (xs[i] < v) {
 				newarr[i] = xs[i];
-			else if (i == index)
+			}
+			else if (xs[i] > v && !inserted) {
 				newarr[i] = v;
+				inserted = true;
+			}
 			else
-				newarr[i] = xs[i - 1];
+				newarr[i] = xs[i-1];
 		}
+		if (inserted) {
+			newarr[n+1] = xs[n];
+			return newarr;
+		}
+	 
+		newarr[n+1] = v;
 		return newarr;
 		
 		
