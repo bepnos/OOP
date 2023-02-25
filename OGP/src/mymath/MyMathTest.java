@@ -1,13 +1,8 @@
 package mymath;
 
-// Ik snap het niet
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
-
-import junit.framework.Assert;
 
 class MyMathTest {
 	
@@ -19,6 +14,7 @@ class MyMathTest {
 		int c = MyMath.sqrt(c2);
 		assert c == 5;
 		assert MyMath.sqrt(0) == 0;
+		//MyMath.sqrt(-1);
 	}
 	
 	@Test
@@ -31,20 +27,26 @@ class MyMathTest {
 	}
 	
 	@Test
-	void insertionTest() {
-		int xs[] = {10, 20, 30, 40};
-<<<<<<< HEAD
-		int result[] = MyMath.insert(xs, 1, 60);
-		System.out.println(Arrays.toString(result));
+	void insertTest1() {
+		int[] xs = {10, 20, 0, 0};
+		MyMath.insert(xs, 2, 15);
+		assertArrayEquals(new int[] {10, 15, 20, 0}, xs);		
+	}
+
+	@Test
+	void insertTest2() {
+		int[] xs = {10, 20, 0, 0};
+		MyMath.insert(xs, 2, 7);
+		assertArrayEquals(new int[] {7, 10, 20, 0}, xs);		
+	}
+	
+	@Test
+	void insertionSortTest() {
+		int[] xs = {7, 5, 10, 0};
+		MyMath.insertionSort(xs);
+		assertArrayEquals(new int[] {0, 5, 7, 10}, xs);
 		
-		
-		assertArrayEquals(new int[] {10, 60, 20, 30, 40}, result);
-=======
-		int expected[] = {10, 15, 20};
-		assertArrayEquals(expected, MyMath.insert(xs, 3, 15));
->>>>>>> branch 'master' of https://github.com/bepnos/OGP
-		
-		
+		MyMath.insertionSort(null);
 	}
 
 }

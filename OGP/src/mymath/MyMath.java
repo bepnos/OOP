@@ -29,6 +29,7 @@ public class MyMath {
 	 *     | haystack != null
 	 * @pre `haystack` is sorted.
 	 *     | IntStream.range(1, haystack.length).allMatch(i -> haystack[i - 1] <= haystack[i])
+	 * @inspects | haystack
 	 * @post The result is nonnegative
 	 *     | 0 <= result
 	 * @post The result is not greater than the length of `haystack`
@@ -57,6 +58,7 @@ public class MyMath {
 	 * 
 	 * @pre | xs != null
 	 * @pre | 0 <= n && n <= xs.length
+	 * @inspects | xs
 	 * @post | result == IntStream.range(0, n).filter(i -> xs[i] == v).count()
 	 */
 	static long count(int[] xs, int n, int v) {
@@ -66,13 +68,15 @@ public class MyMath {
 	/**
 	 * Inserts the given value `v` into the sorted sequence of values at indices 0 (inclusive)
 	 * through `n` (exclusive) in array `xs`, shifting elements to the right as necessary.
-	 * @return 
+	 * 
+	 * Contractueel
 	 * 
 	 * @pre | xs != null
 	 * @pre | 0 <= n
 	 * @pre | n < xs.length
 	 * @pre The elements at indices 0 (inclusive) through `n` (exclusive) in `xs` are sorted.
 	 *      | IntStream.range(1, n).allMatch(i -> xs[i - 1] <= xs[i])
+	 * @mutates | xs
 	 * @post The elements at indices 0 (inclusive) through `n + 1` (exclusive) in `xs` are sorted.
 	 *      | IntStream.range(1, n + 1).allMatch(i -> xs[i - 1] <= xs[i])
 	 * @post For each element `e` in `xs[0:n + 1]`, the number of occurrences of `e` equals the old
@@ -83,63 +87,52 @@ public class MyMath {
 	 *      |     (xs[i] == v ? 1 : 0)
 	 *      | )
 	 */
-	static int[] insert(int[] xs, int n, int v) {
-<<<<<<< HEAD
-		int newarr[] = new int[n + 2];
-=======
-		int[] sequence = new int[n];
->>>>>>> branch 'master' of https://github.com/bepnos/OGP
-		int i; 
-		boolean inserted = false;
-<<<<<<< HEAD
-		for (i = 0; i <= n; i++) {
-			if (xs[i] < v) {
-				newarr[i] = xs[i];
-			}
-			else if (xs[i] > v && !inserted) {
-				newarr[i] = v;
-				inserted = true;
-			}
-			else
-				newarr[i] = xs[i-1];
-=======
-		for (i = 0; i<sequence.length; i++ ) {
-			if (xs[i] < v) {
-				sequence[i] = xs[i];
-			}
-			else if (xs[i] >= v && inserted == false) {
-				sequence[i] = v; 
-				inserted = true;
-			}
-			else {
-				sequence[i] = xs[i - 1];
-			}
->>>>>>> branch 'master' of https://github.com/bepnos/OGP
-		}
-<<<<<<< HEAD
-		if (inserted) {
-			newarr[n+1] = xs[n];
-			return newarr;
-		}
-	 
-		newarr[n+1] = v;
-		return newarr;
-=======
-		xs = sequence;
-		return xs; 	
->>>>>>> branch 'master' of https://github.com/bepnos/OGP
-		
-		
-		// TODO: Implementeer en schrijf een testsuite!
+	static void insert(int[] xs, int n, int v) {
+		int i = 0;
+		while (i < n && xs[i] < v)
+			i++;
+		for (int j = n; i < j; j--)
+			xs[j] = xs[j - 1];
+		xs[i] = v;
 	}
 	
 	/**
-	 * TODO: Documenteer informeel en formeel!
-	 * @param xs
+	 * Defensief programmeren
+	 * 
+	 * @throws IllegalArgumentException | xs == null
+	 * @mutates | xs
+	 * @post The given array's elements are in ascending order.
+	 *     | IntStream.range(1, xs.length).allMatch(i -> xs[i - 1] <= xs[i])
+	 * @post For each element in the array, the number of times it occurs in the array equals the
+	 *       number of times it occured in the array before the method was called. 
+	 *       | Arrays.stream(xs).allMatch(e ->
+	 *       |     IntStream.range(0, xs.length).filter(i -> xs[i] == e).count() ==
+	 *       |     IntStream.range(0, xs.length).filter(i -> old(xs.clone())[i] == e).count()
+	 *       | )
 	 */
 	static void insertionSort(int[] xs) {
-		// TODO: Implementeer en schrijf een testsuite!
+		if (xs == null)
+			throw new IllegalArgumentException("`xs` is null");
+		
+		for (int n = 1; n < xs.length; n++)
+			insert(xs, n, xs[n]);
 	}
 
+	/**
+	 * @inspects nothing |
+	 */
+	static boolean isSameArray(int[] xs1, int[] xs2) {
+		return xs1 == xs2;
+	}
+	
+	/**
+	 * @creates | result
+	 */
+	static int[] copy(int[] xs) {
+		int[] result = new int[xs.length];
+		for (int i = 0; i < xs.length; i++)
+			result[i] = xs[i];
+		return result;
+	}
 
 }
