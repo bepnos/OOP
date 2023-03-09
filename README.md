@@ -1,3 +1,3 @@
 # OGP
 
-Repository which follows the class Object Oriented Design at KU Leuven
+Repository which follows the class Object Oriented Programming at KU Leuven
