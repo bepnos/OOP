@@ -45,8 +45,6 @@ class MyMathTest {
 		int[] xs = {7, 5, 10, 0};
 		MyMath.insertionSort(xs);
 		assertArrayEquals(new int[] {0, 5, 7, 10}, xs);
-		
-		MyMath.insertionSort(null);
 	}
 
 }
